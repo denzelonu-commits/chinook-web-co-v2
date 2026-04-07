@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 88" width="360" height="88" role="img" aria-label="Chinook Web Co.">
+  <title>Chinook Web Co.</title>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Chinook Arch Mark -->
+  <!-- Three concentric arcs radiating from lower-left, center at (5, 88) -->
+  <!-- Outer arc — Chinook Amber -->
+  <path
+    d="M 5 13 A 75 75 0 0 1 70 52"
+    stroke="#E07B2A"
+    stroke-width="5.5"
+    fill="none"
+    stroke-linecap="round"
+  />
+  <!-- Middle arc — Sky Blue -->
+  <path
+    d="M 5 36 A 52 52 0 0 1 50 63"
+    stroke="#2E6EA6"
+    stroke-width="5.5"
+    fill="none"
+    stroke-linecap="round"
+  />
+  <!-- Inner arc — Deep Steel Blue -->
+  <path
+    d="M 5 58 A 30 30 0 0 1 31 75"
+    stroke="#1C3A5E"
+    stroke-width="5.5"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- CHINOOK wordmark -->
+  <text
+    x="88"
+    y="57"
+    font-family="'Barlow Condensed', 'Arial Narrow', Arial, sans-serif"
+    font-weight="700"
+    font-size="50"
+    letter-spacing="2"
+    fill="#1C3A5E"
+  >CHINOOK</text>
+
+  <!-- Amber rule -->
+  <line x1="88" y1="64" x2="293" y2="64" stroke="#E07B2A" stroke-width="2"/>
+
+  <!-- WEB CO. sub-wordmark -->
+  <text
+    x="90"
+    y="80"
+    font-family="'Barlow Condensed', 'Arial Narrow', Arial, sans-serif"
+    font-weight="400"
+    font-size="15"
+    letter-spacing="9.5"
+    fill="#6B7A8D"
+  >WEB CO.</text>
+</svg>

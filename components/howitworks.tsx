@@ -32,12 +32,12 @@ const container = {
   show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
 };
 
-const stepVariant = {
-  hidden: { opacity: 0, y: 32 },
+const stepVariant: Variants = {
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: "easeOut" },
+    transition: { duration: 0.65, ease: "easeOut" as const },
   },
 };
 

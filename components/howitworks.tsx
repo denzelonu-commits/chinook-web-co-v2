@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { motion } from "framer-motion";
 import { MessageSquare, PenTool, Rocket } from "lucide-react";
 
 const steps = [

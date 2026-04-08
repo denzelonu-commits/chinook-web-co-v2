@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, Variants } from "framer-motion";
 import { motion } from "framer-motion";
 import { MessageSquare, PenTool, Rocket } from "lucide-react";
 
@@ -41,11 +42,11 @@ const stepVariant = {
   },
 };
 
-const lineVariant = {
+const lineVariant: Variants = {
   hidden: { scaleX: 0 },
   show: {
     scaleX: 1,
-    transition: { duration: 0.8, ease: "easeOut", delay: 0.3 },
+    transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.3 },
   },
 };
 

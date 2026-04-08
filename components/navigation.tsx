@@ -34,7 +34,7 @@ export default function Navigation() {
       <motion.header
         initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0,   opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="fixed top-5 inset-x-0 z-50 flex justify-center px-4"
         role="banner"
       >
@@ -138,7 +138,7 @@ export default function Navigation() {
               initial={{ opacity: 0, y: -12, scale: 0.97 }}
               animate={{ opacity: 1, y: 0,   scale: 1 }}
               exit={{    opacity: 0, y: -12, scale: 0.97 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
               className="fixed top-[72px] left-4 right-4 z-40 md:hidden rounded-2xl bg-black/90 border border-white/[0.09] backdrop-blur-xl shadow-[0_16px_64px_rgba(0,0,0,0.7)] overflow-hidden"
               role="dialog"
               aria-modal="true"

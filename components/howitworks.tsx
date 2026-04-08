@@ -37,7 +37,7 @@ const stepVariant = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.65, ease: "easeOut" },
   },
 };
 
@@ -45,7 +45,7 @@ const lineVariant = {
   hidden: { scaleX: 0 },
   show: {
     scaleX: 1,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 },
+    transition: { duration: 0.8, ease: "easeOut", delay: 0.3 },
   },
 };
 
@@ -79,7 +79,7 @@ export default function HowItWorks() {
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-20"
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#3b82f6]/30 bg-[#3b82f6]/10 text-[#93c5fd] text-xs font-medium tracking-wide uppercase mb-5">
@@ -192,7 +192,7 @@ export default function HowItWorks() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          transition={{ duration: 0.55, ease: "easeOut", delay: 0.2 }}
           className="text-center mt-16"
         >
           <a

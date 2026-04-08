@@ -53,7 +53,7 @@ const container = {
 
 const card = {
   hidden: { opacity: 0, y: 40 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
 /* ── Component ─────────────────────────────────────────────────────── */
@@ -82,7 +82,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="mb-20"
         >
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/40 text-[0.68rem] tracking-[0.22em] uppercase font-medium mb-6">

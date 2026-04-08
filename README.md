@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chinook Web Co. — v2
 
-## Getting Started
+Premium agency website for Chinook Web Co., a Calgary-based web design studio serving local trades and small businesses.
 
-First, run the development server:
+**Stack:** Next.js 16 · Tailwind CSS v4 · Framer Motion v12 · React 19  
+**Contact form:** Formspree (`xnjoleaz`)  
+**Deploy target:** Vercel
+
+---
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploying to Vercel
 
-## Learn More
+### Option A — Vercel CLI (recommended)
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm i -g vercel
+vercel
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Follow the prompts. Vercel auto-detects Next.js.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Option B — GitHub integration
 
-## Deploy on Vercel
+1. Push this repo to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Accept all defaults — no environment variables required.
+4. Click **Deploy**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site will be live at your `.vercel.app` URL within ~60 seconds.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Custom domain
+
+In the Vercel dashboard → **Settings → Domains**, add `chinookwebco.com` and follow the DNS instructions.
+
+---
+
+## Formspree
+
+The contact form posts to `https://formspree.io/f/xnjoleaz`.
+
+- No environment variables needed — the form ID is public.
+- Submissions are delivered to the email linked to that Formspree account.
+- To change the recipient, update the Formspree dashboard at [formspree.io](https://formspree.io).
+
+---
+
+## Project Structure
+
+```
+app/
+  globals.css        — Tailwind v4 theme + base styles
+  layout.tsx         — Root layout, font loading, metadata
+  page.tsx           — Page assembly (imports all sections)
+
+components/
+  Navigation.tsx     — Sticky nav with mobile hamburger
+  Hero.tsx           — Two-column hero + browser mockup
+  StatsBar.tsx       — Dark stats band with animated counters
+  Pricing.tsx        — Three-tier pricing cards
+  HowItWorks.tsx     — 3-step process section
+  WhyWebsite.tsx     — ROI two-column stat section
+  Portfolio.tsx      — Placeholder portfolio cards
+  Testimonials.tsx   — Client quote cards
+  Contact.tsx        — Formspree contact form
+  Footer.tsx         — Dark footer
+
+  ui/
+    ScrollReveal.tsx    — Scroll-triggered fade-up animations
+    AnimatedCounter.tsx — Count-up number animation
+
+lib/
+  utils.ts           — cn() helper
+
+public/
+  wordmark.svg       — Brand logo
+  brand-guidelines.md
+```
+
+---
+
+## Design System
+
+| Token | Value |
+|-------|-------|
+| Dark background | `#1A1F2E` |
+| Light background | `#F5F1EC` |
+| Chinook Amber (accent) | `#E07B2A` |
+| Secondary blue | `#2E6EA6` |
+| Muted text | `#6B7A8D` |
+| Headlines | Barlow Condensed 700 |
+| Body | Inter 400 |

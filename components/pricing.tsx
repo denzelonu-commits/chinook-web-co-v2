@@ -1,227 +1,184 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import { CheckCircle2, ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { StaggerContainer, StaggerItem } from './ui/ScrollReveal'
+import ScrollReveal from './ui/ScrollReveal'
 
-const plans = [
+const tiers = [
   {
-    name: "Starter",
-    price: "$1,500",
-    billing: "one-time",
-    tagline: "Perfect for small businesses ready to get online.",
-    popular: false,
-    cta: "Get Started",
+    id: 'starter',
+    name: 'Starter',
+    price: 750,
+    tagline: 'Get online fast.',
+    description:
+      'Everything you need to look credible and capture leads — nothing you don\'t.',
     features: [
-      "Up to 5 pages",
-      "Mobile-responsive design",
-      "On-page SEO setup",
-      "Contact form",
-      "Google Analytics integration",
-      "2 rounds of revisions",
-      "14-day delivery",
+      'Up to 4 pages',
+      'Mobile-ready design',
+      'Contact form',
+      'Basic on-page SEO',
+      'Google Maps embed',
     ],
+    hosting: 75,
+    cta: 'Get Started',
+    highlighted: false,
   },
   {
-    name: "Growth",
-    price: "$2,800",
-    billing: "one-time",
-    tagline: "For businesses serious about standing out and converting.",
-    popular: true,
-    cta: "Get Started",
+    id: 'standard',
+    name: 'Standard',
+    price: 1200,
+    tagline: 'Win more jobs.',
+    description:
+      'The full package for a trades business that needs to stand out and convert browsers into calls.',
     features: [
-      "Up to 10 pages",
-      "Premium custom design",
-      "Full local SEO package",
-      "Blog or portfolio section",
-      "Speed & Core Web Vitals optimization",
-      "Google Business Profile setup",
-      "Unlimited revisions (30 days)",
-      "30-day post-launch support",
+      'Up to 8 pages',
+      'Mobile-ready design',
+      'Contact & quote request forms',
+      'SEO-optimized copy',
+      'Google Business integration',
+      'Photo gallery',
     ],
+    hosting: 75,
+    cta: 'Get Started',
+    highlighted: true,
   },
-];
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
-};
-
-const cardAnim = {
-  hidden: { opacity: 0, y: 36 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: "easeOut" },
+  {
+    id: 'premium',
+    name: 'Premium',
+    price: 2000,
+    tagline: 'Own your market.',
+    description:
+      'Custom-designed for businesses that want to dominate their local search results.',
+    features: [
+      'Unlimited pages',
+      'Fully custom design',
+      'Advanced SEO + blogging',
+      'Analytics reporting',
+      'Priority turnaround',
+    ],
+    hosting: 75,
+    cta: 'Get Started',
+    highlighted: false,
   },
-};
+]
 
 export default function Pricing() {
   return (
-    <section
-      id="pricing"
-      className="relative py-24 sm:py-32 bg-[#0a0a0a] overflow-hidden"
-      aria-labelledby="pricing-heading"
-    >
-      {/* Ambient glow — centered blue */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-[#3b82f6]/[0.06] blur-[130px]" />
-      </div>
+    <section id="services" className="bg-[#F5F1EC] py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-      <div className="relative max-w-4xl mx-auto px-5 sm:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#3b82f6]/30 bg-[#3b82f6]/10 text-[#93c5fd] text-xs font-medium tracking-wide uppercase mb-5">
-            Pricing
-          </span>
-          <h2
-            id="pricing-heading"
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 leading-tight"
-          >
-            Transparent pricing,
-            <br />
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, #ffffff 0%, #93c5fd 40%, #3b82f6 100%)",
-              }}
+        {/* Section header */}
+        <ScrollReveal className="mb-16">
+          <p className="eyebrow mb-3">Pricing</p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1A1F2E] leading-[1.05]"
+              style={{ fontFamily: 'var(--font-barlow)', fontWeight: 700 }}
             >
-              no surprises.
-            </span>
-          </h2>
-          <p className="max-w-lg mx-auto text-white/50 text-lg leading-relaxed">
-            Flat-rate projects with everything included. No hourly billing, no
-            scope creep.
-          </p>
-        </motion.div>
+              Straight prices.<br />
+              No surprises.
+            </h2>
+            <p className="text-[#6B7A8D] max-w-xs text-sm leading-relaxed md:text-right">
+              All plans include a free preview before you commit.<br />
+              Hosting covers everything — we handle it all.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* Cards */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch"
-        >
-          {plans.map((plan) => (
-            <motion.div
-              key={plan.name}
-              variants={cardAnim}
-              className={`relative flex flex-col rounded-2xl p-8 border transition-colors duration-300 ${
-                plan.popular
-                  ? "border-[#3b82f6]/50 bg-[#3b82f6]/[0.05]"
-                  : "border-white/[0.07] bg-white/[0.025]"
-              }`}
-            >
-              {/* Popular glow halo */}
-              {plan.popular && (
-                <>
-                  <div
-                    className="absolute inset-0 rounded-2xl pointer-events-none"
-                    style={{
-                      boxShadow:
-                        "0 0 60px rgba(59,130,246,0.18), inset 0 0 40px rgba(59,130,246,0.06)",
-                    }}
-                    aria-hidden="true"
-                  />
-                  {/* Top highlight line */}
-                  <div
-                    className="absolute top-0 inset-x-8 h-px rounded-full bg-gradient-to-r from-transparent via-[#3b82f6]/60 to-transparent pointer-events-none"
-                    aria-hidden="true"
-                  />
-                </>
-              )}
-
-              {/* Plan header */}
-              <div className="relative flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-                {plan.popular && (
-                  <Badge
-                    variant="default"
-                    className="bg-[#3b82f6] text-white border-0 text-[0.65rem] font-semibold tracking-wide uppercase px-2.5 py-0.5"
-                  >
-                    Most Popular
-                  </Badge>
-                )}
-              </div>
-
-              {/* Price */}
-              <div className="relative mb-4">
-                <div className="flex items-end gap-2 mb-1">
-                  <span className="text-5xl font-bold text-white tabular-nums leading-none">
-                    {plan.price}
-                  </span>
-                </div>
-                <p className="text-sm text-white/35 capitalize">{plan.billing}</p>
-              </div>
-
-              {/* Tagline */}
-              <p className="relative text-sm text-white/50 leading-relaxed mb-8 pb-8 border-b border-white/[0.07]">
-                {plan.tagline}
-              </p>
-
-              {/* Feature list */}
-              <ul
-                className="relative flex flex-col gap-3 mb-10 flex-1"
-                aria-label={`${plan.name} plan features`}
-              >
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm">
-                    <CheckCircle2
-                      className="w-4 h-4 text-[#3b82f6] shrink-0 mt-[1px]"
-                      aria-hidden="true"
-                    />
-                    <span className="text-white/65">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <a
-                href="#contact"
-                className={`relative group inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] ${
-                  plan.popular
-                    ? "bg-[#3b82f6] hover:bg-[#2563eb] active:bg-[#1d4ed8] text-white shadow-[0_0_32px_rgba(59,130,246,0.35)] hover:shadow-[0_0_48px_rgba(59,130,246,0.5)]"
-                    : "border border-white/[0.12] hover:border-white/25 bg-white/[0.03] hover:bg-white/[0.06] text-white/80 hover:text-white"
-                }`}
-              >
-                {plan.cta}
-                <ArrowRight
-                  className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </a>
-            </motion.div>
+        {/* Pricing cards */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {tiers.map((tier) => (
+            <StaggerItem key={tier.id}>
+              <PricingCard tier={tier} />
+            </StaggerItem>
           ))}
-        </motion.div>
+        </StaggerContainer>
 
-        {/* Footer note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center text-sm text-white/30 mt-8"
-        >
-          Need something custom?{" "}
-          <a
-            href="#contact"
-            className="text-[#93c5fd] hover:text-[#3b82f6] underline underline-offset-2 transition-colors duration-150"
-          >
-            Let&apos;s talk.
-          </a>
-        </motion.p>
+        {/* Hosting note */}
+        <ScrollReveal delay={0.2} className="mt-8 text-center">
+          <p className="text-xs text-[#6B7A8D]">
+            $75/month hosting includes hosting, maintenance, and all updates — we handle everything.
+          </p>
+        </ScrollReveal>
       </div>
     </section>
-  );
+  )
+}
+
+function PricingCard({ tier }: { tier: typeof tiers[0] }) {
+  return (
+    <div
+      className={`relative flex flex-col rounded-[10px] p-7 transition-all duration-200 ${
+        tier.highlighted
+          ? 'bg-white border-2 border-[#E07B2A] shadow-[0_8px_32px_-8px_rgba(224,123,42,0.2)] md:-translate-y-2'
+          : 'bg-white border border-[#D8E0E8]'
+      }`}
+    >
+      {/* Recommended badge */}
+      {tier.highlighted && (
+        <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#E07B2A] text-white text-[10px] font-semibold px-3 py-1 rounded-full uppercase tracking-wide whitespace-nowrap">
+          Most Popular
+        </span>
+      )}
+
+      {/* Tier name */}
+      <p className="eyebrow text-[#6B7A8D] mb-4">{tier.name}</p>
+
+      {/* Price — dominant display element */}
+      <div className="mb-1">
+        <span
+          className="text-5xl md:text-6xl font-bold text-[#1A1F2E] leading-none"
+          style={{ fontFamily: 'var(--font-barlow)', fontWeight: 700 }}
+        >
+          ${tier.price.toLocaleString()}
+        </span>
+        <span className="text-sm text-[#6B7A8D] ml-1.5">one-time</span>
+      </div>
+
+      {/* Hosting fee — separate line below price */}
+      <p className="text-xs text-[#6B7A8D] mb-5">
+        + ${tier.hosting}/mo hosting
+      </p>
+
+      {/* Tagline + description */}
+      <p
+        className="text-lg font-bold text-[#1A1F2E] mb-1.5"
+        style={{ fontFamily: 'var(--font-barlow)', fontWeight: 700 }}
+      >
+        {tier.tagline}
+      </p>
+      <p className="text-sm text-[#6B7A8D] leading-relaxed mb-6">
+        {tier.description}
+      </p>
+
+      {/* Divider */}
+      <hr className="border-[#D8E0E8] mb-6" />
+
+      {/* Features list */}
+      <ul className="flex flex-col gap-3 mb-8 flex-1">
+        {tier.features.map((feature) => (
+          <li key={feature} className="flex items-start gap-2.5 text-sm text-[#1A1F2E]">
+            {/* Amber check mark */}
+            <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-[#E07B2A]/10 flex items-center justify-center">
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+                <path d="M1.5 4L3 5.5L6.5 2" stroke="#E07B2A" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+            {feature}
+          </li>
+        ))}
+      </ul>
+
+      {/* CTA */}
+      <a
+        href="#contact"
+        className={`text-center text-sm font-semibold py-3 px-5 rounded-[6px] transition-all duration-150 active:scale-[0.97] cursor-pointer block ${
+          tier.highlighted
+            ? 'bg-[#E07B2A] text-white hover:bg-[#cc6d22]'
+            : 'bg-[#1C3A5E] text-[#F5F1EC] hover:bg-[#162f50]'
+        }`}
+      >
+        {tier.cta}
+      </a>
+    </div>
+  )
 }

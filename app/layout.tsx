@@ -1,88 +1,46 @@
-import type { Metadata } from "next";
-import { Syne, Outfit, Geist } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Barlow_Condensed, Inter } from 'next/font/google'
+import './globals.css'
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
+const barlowCondensed = Barlow_Condensed({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-barlow-condensed',
+  display: 'swap',
+})
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter-var',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: "Chinook Web Co. | Web Design Calgary",
+  title: 'Chinook Web Co. | Calgary Web Design',
   description:
-    "Calgary's premium web design studio. We build fast, modern websites that convert visitors into clients. Custom web design, development & SEO for Calgary businesses.",
-  keywords: [
-    "web design Calgary",
-    "website design Calgary",
-    "Calgary web developer",
-    "Calgary web agency",
-    "custom website Calgary",
-    "SEO Calgary",
-  ],
-  authors: [{ name: "Chinook Web Co." }],
-  creator: "Chinook Web Co.",
-  metadataBase: new URL("https://chinookwebco.com"),
+    'Professional websites for Calgary small businesses and trades. We build fast, no-nonsense sites that get customers through the door — starting at $750.',
+  keywords: 'Calgary web design, Calgary website, small business website Calgary, trades website Calgary',
   openGraph: {
-    type: "website",
-    locale: "en_CA",
-    url: "https://chinookwebco.com",
-    siteName: "Chinook Web Co.",
-    title: "Chinook Web Co. | Web Design Calgary",
-    description:
-      "Calgary's premium web design studio. Fast, modern websites that convert visitors into clients.",
+    title: 'Chinook Web Co. | Calgary Web Design',
+    description: 'Calgary websites that get customers through the door.',
+    url: 'https://chinookwebco.com',
+    siteName: 'Chinook Web Co.',
+    locale: 'en_CA',
+    type: 'website',
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Chinook Web Co. | Web Design Calgary",
-    description:
-      "Calgary's premium web design studio. Fast, modern websites that convert visitors into clients.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true },
-  },
-};
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${outfit.variable} ${geist.variable} dark antialiased`}
+      className={`${barlowCondensed.variable} ${inter.variable}`}
     >
-      <body className="min-h-dvh bg-black text-white font-sans" suppressHydrationWarning>
-        {/* Film-grain noise overlay — 3% opacity */}
-        <div
-          aria-hidden="true"
-          className="fixed inset-0 z-[9999] pointer-events-none select-none"
-          style={{
-            opacity: 0.03,
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat",
-            backgroundSize: "128px 128px",
-          }}
-        />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
-  );
+  )
 }

@@ -1,21 +1,23 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { motion, Variants } from 'framer-motion'
 import { Home, Layers, Workflow, Tag, Mail, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { usePageTransition } from '@/components/PageTransitionProvider'
 
 const NAV_LINKS = [
-  { label: 'Home',        href: '#hero',         icon: Home },
-  { label: 'Services',    href: '#services',      icon: Layers },
-  { label: 'How It Works',href: '#how-it-works',  icon: Workflow },
-  { label: 'Pricing',     href: '#pricing',       icon: Tag },
-  { label: 'Contact',     href: '#contact',       icon: Mail },
+  { label: 'Home',         href: '#hero',          icon: Home,     isPage: false },
+  { label: 'Services',     href: '/services',       icon: Layers,   isPage: true  },
+  { label: 'How It Works', href: '/how-it-works',   icon: Workflow, isPage: true  },
+  { label: 'Pricing',      href: '#pricing',        icon: Tag,      isPage: false },
+  { label: 'Contact',      href: '#contact',        icon: Mail,     isPage: false },
 ] as const
 
-const SECTION_IDS = NAV_LINKS.map((l) => l.href.slice(1))
+// Sections that exist on the homepage for IntersectionObserver
+const HOME_SECTION_IDS = ['hero', 'services', 'how-it-works', 'pricing', 'contact']
 
-// ── Left panel fade-in on mount ──
 const panelVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.4, ease: 'easeOut' } },
@@ -24,15 +26,19 @@ const panelVariants: Variants = {
 export function Navigation() {
   const [activeSection, setActiveSection] = useState('hero')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { navigateTo } = usePageTransition()
+  const pathname = usePathname()
+  const router = useRouter()
+  const isHomePage = pathname === '/'
 
-  // IntersectionObserver to highlight the active nav link
+  // IntersectionObserver — only meaningful on the homepage
   useEffect(() => {
+    if (!isHomePage) return
     const observers: IntersectionObserver[] = []
 
-    SECTION_IDS.forEach((id) => {
+    HOME_SECTION_IDS.forEach((id) => {
       const el = document.getElementById(id)
       if (!el) return
-
       const obs = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) setActiveSection(id)
@@ -44,12 +50,30 @@ export function Navigation() {
     })
 
     return () => observers.forEach((o) => o.disconnect())
-  }, [])
+  }, [isHomePage])
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, isPage: boolean) => {
     setMobileMenuOpen(false)
-    const el = document.getElementById(href.slice(1))
-    el?.scrollIntoView({ behavior: 'smooth' })
+
+    if (isPage) {
+      navigateTo(href)
+      return
+    }
+
+    // Anchor link
+    if (isHomePage) {
+      const el = document.getElementById(href.slice(1))
+      el?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      // From subpages: navigate to homepage with transition
+      navigateTo('/')
+    }
+  }
+
+  const getIsActive = (href: string, isPage: boolean) => {
+    if (isPage) return pathname === href
+    if (isHomePage) return activeSection === href.slice(1)
+    return false
   }
 
   return (
@@ -76,7 +100,7 @@ export function Navigation() {
         {/* ── Logo ── */}
         <div className="relative z-10">
           <button
-            onClick={() => handleNavClick('#hero')}
+            onClick={() => handleNavClick('#hero', false)}
             className="flex flex-col mb-14 text-left"
           >
             <span
@@ -85,22 +109,19 @@ export function Navigation() {
             >
               CHINOOK
             </span>
-            <span
-              className="text-[10px] tracking-[0.35em] text-text-muted-dark uppercase font-semibold mt-0.5"
-            >
+            <span className="text-[10px] tracking-[0.35em] text-text-muted-dark uppercase font-semibold mt-0.5">
               WEB CO.
             </span>
           </button>
 
           {/* ── Nav links ── */}
           <nav className="flex flex-col gap-1">
-            {NAV_LINKS.map(({ label, href, icon: Icon }) => {
-              const id = href.slice(1)
-              const isActive = activeSection === id
+            {NAV_LINKS.map(({ label, href, icon: Icon, isPage }) => {
+              const isActive = getIsActive(href, isPage)
               return (
                 <button
                   key={href}
-                  onClick={() => handleNavClick(href)}
+                  onClick={() => handleNavClick(href, isPage)}
                   className={cn(
                     'flex items-center gap-3.5 px-3 py-2.5 rounded-sm text-left',
                     'transition-colors duration-150 group',
@@ -109,7 +130,6 @@ export function Navigation() {
                       : 'text-text-muted-dark hover:text-white'
                   )}
                 >
-                  {/* Amber active indicator */}
                   <span
                     className={cn(
                       'absolute left-0 h-5 w-0.5 rounded-r-full bg-amber transition-opacity duration-150',
@@ -138,9 +158,7 @@ export function Navigation() {
 
         {/* ── Bottom CTA block ── */}
         <div className="relative z-10 space-y-4">
-          <p
-            className="text-[11px] leading-relaxed text-text-muted-dark uppercase tracking-wide font-medium"
-          >
+          <p className="text-[11px] leading-relaxed text-text-muted-dark uppercase tracking-wide font-medium">
             Independent digital engineering studio
             <br />
             based in Calgary, AB.
@@ -157,7 +175,7 @@ export function Navigation() {
           </a>
 
           <button
-            onClick={() => handleNavClick('#contact')}
+            onClick={() => handleNavClick('#contact', false)}
             className="group flex items-center justify-between w-full bg-amber text-white
                        px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.15em]
                        transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
@@ -178,7 +196,7 @@ export function Navigation() {
       <header className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between
                          px-5 h-14 bg-charcoal/90 backdrop-blur-md border-b border-white/[0.07]">
         <button
-          onClick={() => handleNavClick('#hero')}
+          onClick={() => handleNavClick('#hero', false)}
           className="flex flex-col leading-none"
         >
           <span
@@ -194,7 +212,7 @@ export function Navigation() {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={() => handleNavClick('#contact')}
+            onClick={() => handleNavClick('#contact', false)}
             className="bg-amber text-white text-[10px] font-bold uppercase tracking-[0.12em] px-4 py-2"
           >
             Free Preview
@@ -231,18 +249,28 @@ export function Navigation() {
       {/* Mobile overlay menu */}
       <motion.div
         initial={false}
-        animate={mobileMenuOpen ? { opacity: 1, pointerEvents: 'auto' as const } : { opacity: 0, pointerEvents: 'none' as const }}
+        animate={
+          mobileMenuOpen
+            ? { opacity: 1, pointerEvents: 'auto' as const }
+            : { opacity: 0, pointerEvents: 'none' as const }
+        }
         transition={{ duration: 0.2, ease: 'easeOut' }}
         className="md:hidden fixed inset-0 z-40 bg-charcoal/95 backdrop-blur-xl flex flex-col justify-center px-8 pt-14"
       >
         <nav className="flex flex-col gap-2">
-          {NAV_LINKS.map(({ label, href, icon: Icon }, i) => (
+          {NAV_LINKS.map(({ label, href, icon: Icon, isPage }, i) => (
             <motion.button
               key={href}
               initial={{ opacity: 0, y: 16 }}
-              animate={mobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              transition={{ duration: 0.25, delay: mobileMenuOpen ? i * 0.06 : 0, ease: 'easeOut' }}
-              onClick={() => handleNavClick(href)}
+              animate={
+                mobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }
+              }
+              transition={{
+                duration: 0.25,
+                delay: mobileMenuOpen ? i * 0.06 : 0,
+                ease: 'easeOut',
+              }}
+              onClick={() => handleNavClick(href, isPage)}
               className="flex items-center gap-4 py-4 border-b border-white/[0.06] text-left"
             >
               <Icon size={16} strokeWidth={1.5} className="text-amber" />
@@ -258,7 +286,7 @@ export function Navigation() {
 
         <div className="mt-10">
           <button
-            onClick={() => handleNavClick('#contact')}
+            onClick={() => handleNavClick('#contact', false)}
             className="w-full bg-amber text-white py-4 text-sm font-bold uppercase tracking-[0.15em]"
           >
             Get a Free Preview

@@ -1,10 +1,11 @@
+import Link from 'next/link'
 import { Mail, MapPin } from 'lucide-react'
 
 const NAV_LINKS = [
-  { label: 'Services',     href: '#services' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Pricing',      href: '#pricing' },
-  { label: 'Contact',      href: '#contact' },
+  { label: 'Services',     href: '/services',    isPage: true  },
+  { label: 'How It Works', href: '/how-it-works', isPage: true  },
+  { label: 'Pricing',      href: '#pricing',      isPage: false },
+  { label: 'Contact',      href: '#contact',      isPage: false },
 ] as const
 
 export function Footer() {
@@ -57,15 +58,25 @@ export function Footer() {
             Navigate
           </p>
           <nav className="flex flex-col gap-3">
-            {NAV_LINKS.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                className="text-[13px] text-text-dark hover:text-white transition-colors duration-150 w-fit"
-              >
-                {label}
-              </a>
-            ))}
+            {NAV_LINKS.map(({ label, href, isPage }) =>
+              isPage ? (
+                <Link
+                  key={href}
+                  href={href}
+                  className="text-[13px] text-text-dark hover:text-white transition-colors duration-150 w-fit"
+                >
+                  {label}
+                </Link>
+              ) : (
+                <a
+                  key={href}
+                  href={href}
+                  className="text-[13px] text-text-dark hover:text-white transition-colors duration-150 w-fit"
+                >
+                  {label}
+                </a>
+              )
+            )}
           </nav>
         </div>
 

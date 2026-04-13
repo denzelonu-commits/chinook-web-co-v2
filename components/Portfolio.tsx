@@ -66,7 +66,7 @@ export function Portfolio() {
           </h2>
         </div>
         <p className="text-sm text-text-muted-dark max-w-xs leading-relaxed italic">
-          Portfolio updated as projects are completed. Each site is custom-built — no two are identical.
+          Spec work built to demonstrate our process. Each site is custom-built — no two are identical.
         </p>
       </motion.div>
 
@@ -94,9 +94,10 @@ export function Portfolio() {
               >
                 {p.title.split(' ')[0]}
               </span>
-              <div className="absolute bottom-3 right-3">
-                <span className="text-[10px] uppercase tracking-widest text-white/30 font-medium italic">
-                  Example project
+              <div className="absolute top-3 left-3">
+                <span className="text-[10px] uppercase tracking-[0.18em] font-bold px-2.5 py-1
+                                 bg-amber/20 border border-amber/30 text-amber">
+                  Spec Project
                 </span>
               </div>
             </div>

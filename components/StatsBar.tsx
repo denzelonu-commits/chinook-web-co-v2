@@ -1,33 +1,24 @@
 'use client'
 
-import { NumberTicker } from '@/components/ui/NumberTicker'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { Check } from 'lucide-react'
 
-const STATS = [
+const VALUE_PROPS = [
   {
-    value: 81,
-    suffix: '%',
-    label: 'of shoppers research a business online before buying',
-    source: 'Invoca, 2024',
+    headline: 'Free mockup',
+    sub: 'No deposit, no commitment — see your site before you pay a cent.',
   },
   {
-    value: 2,
-    suffix: '×',
-    label: 'faster growth for businesses with a website vs. those without',
-    source: 'Marketing LTB, 2025',
+    headline: 'Live in 3–14 days',
+    sub: 'Foundation sites launch in 3–5 days. Growth Engine in 7–10 days.',
   },
   {
-    value: 76,
-    suffix: '%',
-    label: 'of people check a local business website before visiting',
-    source: 'BrightLocal',
+    headline: 'You own the code',
+    sub: 'Full IP transfer on completion. No rental model, no lock-in.',
   },
   {
-    value: 50,
-    suffix: '%',
-    label: 'avg. revenue increase for SMBs with a modern website',
-    source: 'Network Solutions, 2025',
-    prefix: 'up to ',
+    headline: 'Lighthouse 95+ guaranteed',
+    sub: 'Performance, accessibility, and SEO scores baked in from day one.',
   },
 ] as const
 
@@ -39,27 +30,30 @@ export function StatsBar() {
     >
       <ScrollReveal>
         <p className="text-[10px] uppercase tracking-[0.2em] font-semibold text-amber mb-10">
-          The reality for local businesses in 2025
+          What you get — guaranteed
         </p>
       </ScrollReveal>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {STATS.map(({ value, suffix, prefix, label, source }) => (
-          <ScrollReveal key={label}>
-            <div className="flex flex-col gap-2 pr-6 border-r border-white/[0.06] last:border-none">
-              <div
-                className="text-[clamp(2.5rem,5vw,3.5rem)] font-black text-amber leading-none tracking-tight"
-                style={{ fontFamily: 'var(--font-barlow-condensed)' }}
-              >
-                {prefix && <span className="text-xl font-semibold text-amber/70 mr-1">{prefix}</span>}
-                <NumberTicker value={value} suffix={suffix} />
+        {VALUE_PROPS.map(({ headline, sub }) => (
+          <ScrollReveal key={headline}>
+            <div className="flex flex-col gap-3 pr-6 border-r border-white/[0.06] last:border-none">
+              <div className="flex items-center gap-2">
+                <Check
+                  size={14}
+                  strokeWidth={2.5}
+                  className="text-amber shrink-0"
+                />
+                <span
+                  className="text-[clamp(1rem,2vw,1.2rem)] font-black uppercase tracking-tight text-white leading-none"
+                  style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+                >
+                  {headline}
+                </span>
               </div>
               <p className="text-sm leading-relaxed text-text-dark max-w-[220px]">
-                {label}
+                {sub}
               </p>
-              <span className="text-[10px] uppercase tracking-widest text-text-muted-dark font-medium">
-                {source}
-              </span>
             </div>
           </ScrollReveal>
         ))}

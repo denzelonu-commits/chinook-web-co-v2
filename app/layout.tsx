@@ -17,14 +17,12 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Chinook Web Co. | Calgary Web Design & Development',
+  title: 'Chinook Web Co. | Calgary Web Design',
   description:
-    'Calgary websites that get customers through the door. We build high-performance, custom sites for local trades — mockup first, no obligation. Starting at $2,500.',
+    'Calgary websites that get customers through the door. Mockup first, no obligation.',
   keywords:
     'Calgary web design, Calgary website, small business website Calgary, trades website Calgary, web design agency Calgary',
-  metadataBase: new URL('https://www.chinookwebco.com'),
-  
-  // --- ICON CONFIGURATION ---
+  metadataBase: new URL('https://chinookwebco.com'),
   icons: {
     icon: [
       {
@@ -39,19 +37,17 @@ export const metadata: Metadata = {
       },
     ],
   },
-  // ---------------------------
-
   openGraph: {
     title: 'Chinook Web Co. | Calgary Web Design',
     description:
-      'Calgary websites that get customers through the door. Free mockup, no deposit, live in 3–14 days.',
-    url: 'https://www.chinookwebco.com',
+      'Calgary websites that get customers through the door. Mockup first, no obligation.',
+    url: 'https://chinookwebco.com',
     siteName: 'Chinook Web Co.',
     locale: 'en_CA',
     type: 'website',
     images: [
       {
-        url: '/opengraph-image.png', // Updated to your new Canva PNG
+        url: '/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Chinook Web Co. | Calgary Web Design',
@@ -62,8 +58,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Chinook Web Co. | Calgary Web Design',
     description:
-      'Calgary websites that get customers through the door. Free mockup, no deposit, live in 3–14 days.',
-    images: ['/opengraph-image.png'], // Updated to your new Canva PNG
+      'Calgary websites that get customers through the door. Mockup first, no obligation.',
+    images: ['/opengraph-image.png'],
   },
 }
 

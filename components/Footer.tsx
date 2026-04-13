@@ -4,8 +4,8 @@ import { Mail, MapPin } from 'lucide-react'
 const NAV_LINKS = [
   { label: 'Services',     href: '/services',    isPage: true  },
   { label: 'How It Works', href: '/how-it-works', isPage: true  },
-  { label: 'Pricing',      href: '#pricing',      isPage: false },
-  { label: 'Contact',      href: '#contact',      isPage: false },
+  { label: 'Pricing',      href: '/#pricing',     isPage: false },
+  { label: 'Contact',      href: '/#contact',     isPage: false },
 ] as const
 
 export function Footer() {

@@ -11,8 +11,8 @@ const NAV_LINKS = [
   { label: 'Home',         href: '#hero',          icon: Home,     isPage: false },
   { label: 'Services',     href: '/services',       icon: Layers,   isPage: true  },
   { label: 'How It Works', href: '/how-it-works',   icon: Workflow, isPage: true  },
-  { label: 'Pricing',      href: '#pricing',        icon: Tag,      isPage: false },
-  { label: 'Contact',      href: '#contact',        icon: Mail,     isPage: false },
+  { label: 'Pricing',      href: '/#pricing',       icon: Tag,      isPage: false },
+  { label: 'Contact',      href: '/#contact',       icon: Mail,     isPage: false },
 ] as const
 
 // Sections that exist on the homepage for IntersectionObserver
@@ -62,17 +62,18 @@ export function Navigation() {
 
     // Anchor link
     if (isHomePage) {
-      const el = document.getElementById(href.slice(1))
+      const id = href.replace(/^\/?#/, '')
+      const el = document.getElementById(id)
       el?.scrollIntoView({ behavior: 'smooth' })
     } else {
-      // From subpages: navigate to homepage with transition
-      navigateTo('/')
+      // From subpages: navigate to homepage (with hash if present)
+      navigateTo(href.startsWith('/') ? href : '/')
     }
   }
 
   const getIsActive = (href: string, isPage: boolean) => {
     if (isPage) return pathname === href
-    if (isHomePage) return activeSection === href.slice(1)
+    if (isHomePage) return activeSection === href.replace(/^\/?#/, '')
     return false
   }
 

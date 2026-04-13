@@ -17,9 +17,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Chinook Web Co. | Calgary Web Design',
+  title: 'Chinook Web Co. | Calgary Web Design & Development',
   description:
-    'Calgary websites that get customers through the door. Mockup first, no obligation.',
+    'Calgary websites that get customers through the door. Fast, custom sites for local businesses — mockup first, no deposit, live in days.',
   keywords:
     'Calgary web design, Calgary website, small business website Calgary, trades website Calgary, web design agency Calgary',
   metadataBase: new URL('https://chinookwebco.com'),
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Chinook Web Co. | Calgary Web Design',
+    title: 'Chinook Web Co. | Calgary Web Design & Development',
     description:
-      'Calgary websites that get customers through the door. Mockup first, no obligation.',
+      'Calgary websites that get customers through the door. Fast, custom sites for local businesses — mockup first, no deposit, live in days.',
     url: 'https://chinookwebco.com',
     siteName: 'Chinook Web Co.',
     locale: 'en_CA',
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chinook Web Co. | Calgary Web Design',
+    title: 'Chinook Web Co. | Calgary Web Design & Development',
     description:
-      'Calgary websites that get customers through the door. Mockup first, no obligation.',
+      'Calgary websites that get customers through the door. Fast, custom sites for local businesses — mockup first, no deposit, live in days.',
     images: ['/opengraph-image.png'],
   },
 }

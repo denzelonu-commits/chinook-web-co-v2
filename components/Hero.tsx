@@ -110,34 +110,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* ── Stats strip at the bottom of the hero ── */}
-      <motion.div
-        variants={fadeUpVariants}
-        custom={2.3}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 mt-16 pt-8 border-t border-white/[0.08]
-                   grid grid-cols-2 md:grid-cols-4 gap-6"
-      >
-        {[
-          { num: '47+',  label: 'Calgary businesses' },
-          { num: '14D',  label: 'Avg. days to launch' },
-          { num: '$0',   label: 'Upfront deposit' },
-          { num: '100%', label: 'Mockup satisfaction' },
-        ].map(({ num, label }) => (
-          <div key={label} className="flex flex-col gap-1">
-            <span
-              className="text-3xl font-black text-amber tracking-tight leading-none"
-              style={{ fontFamily: 'var(--font-barlow-condensed)' }}
-            >
-              {num}
-            </span>
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-text-muted-dark">
-              {label}
-            </span>
-          </div>
-        ))}
-      </motion.div>
     </section>
   )
 }

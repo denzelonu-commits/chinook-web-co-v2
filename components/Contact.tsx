@@ -272,28 +272,40 @@ export function Contact() {
             )}
 
             {/* Submit */}
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className={cn(
-                'group inline-flex items-center gap-4 bg-amber text-white',
-                'px-10 py-5 text-base font-bold uppercase tracking-[0.12em]',
-                'transition-all duration-200 hover:brightness-110 active:scale-[0.98]',
-                status === 'sending' && 'opacity-70 cursor-not-allowed'
-              )}
-            >
-              <span
-                className="font-black text-xl uppercase"
-                style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+            <div className="flex flex-col gap-3">
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className={cn(
+                  'group inline-flex items-center gap-4 bg-amber text-white',
+                  'px-10 py-5 text-base font-bold uppercase tracking-[0.12em]',
+                  'transition-all duration-200 hover:brightness-110 active:scale-[0.98]',
+                  status === 'sending' && 'opacity-70 cursor-not-allowed'
+                )}
               >
-                {status === 'sending' ? 'Sending...' : 'Submit Request'}
-              </span>
-              <ArrowRight
-                size={18}
-                strokeWidth={2}
-                className="transition-transform duration-200 group-hover:translate-x-1"
-              />
-            </button>
+                <span
+                  className="font-black text-xl uppercase"
+                  style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+                >
+                  {status === 'sending' ? 'Sending...' : 'Submit Request'}
+                </span>
+                <ArrowRight
+                  size={18}
+                  strokeWidth={2}
+                  className="transition-transform duration-200 group-hover:translate-x-1"
+                />
+              </button>
+              <p className="text-[11px] text-text-muted-dark leading-relaxed max-w-sm">
+                By requesting a demo, you agree to our{' '}
+                <a href="/terms" className="underline underline-offset-2 hover:text-white transition-colors duration-150">
+                  Terms of Service
+                </a>{' '}
+                and{' '}
+                <a href="/privacy" className="underline underline-offset-2 hover:text-white transition-colors duration-150">
+                  Privacy Policy
+                </a>.
+              </p>
+            </div>
           </motion.form>
         )}
 

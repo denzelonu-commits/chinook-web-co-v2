@@ -173,6 +173,9 @@ function PricingCard({
             build fee
           </span>
         </div>
+        <p className="text-[11px] text-[#6B6058] mt-1.5">
+          50% deposit to start · 50% on launch
+        </p>
       </div>
 
       {/* Features */}

@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/icon.svg', // Pointing directly to your logo
+        url: '/opengraph-image.png', // Updated to your new Canva PNG
         width: 1200,
         height: 630,
         alt: 'Chinook Web Co. | Calgary Web Design',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title: 'Chinook Web Co. | Calgary Web Design',
     description:
       'Calgary websites that get customers through the door. Free mockup, no deposit, live in 3–14 days.',
-    images: ['/icon.svg'], // Pointing directly to your logo
+    images: ['/opengraph-image.png'], // Updated to your new Canva PNG
   },
 }
 

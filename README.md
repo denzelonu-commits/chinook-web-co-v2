@@ -1,12 +1,26 @@
-# Chinook Web Co. — v2
+# Chinook Web Co. — Website
 
-Premium agency website for Chinook Web Co., a Calgary-based web design studio serving local trades and small businesses.
+Premium agency website for Chinook Web Co., a local web design studio in Calgary, Alberta.
 
-**Stack:** Next.js 16 · Tailwind CSS v4 · Framer Motion v12 · React 19  
-**Contact form:** Formspree (`xnjoleaz`)  
-**Deploy target:** Vercel
+## Tech Stack
 
----
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion** — page animations, scroll reveals, text generate effect
+- **Lucide React** — icons
+- **Formspree** — contact form (ID: `xnjoleaz`)
+
+## Design System
+
+See `design.md` in the project root for full token reference. Key palette:
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| Charcoal | `#1A1F2E` | Hero, nav, footer, dark sections |
+| Deep Steel Blue | `#1C3A5E` | Services, process sections |
+| Chinook Amber | `#E07B2A` | Accent word, CTAs, stats |
+| Warm Off-White | `#F5F1EC` | Testimonials, pricing section |
 
 ## Local Development
 
@@ -17,86 +31,63 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
----
+## Deploy to Vercel
 
-## Deploying to Vercel
+### Option 1 — Vercel Dashboard (recommended)
 
-### Option A — Vercel CLI (recommended)
+1. Push this repo to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Framework preset: **Next.js** (auto-detected).
+4. Click **Deploy** — no environment variables required.
+
+### Option 2 — Vercel CLI
 
 ```bash
 npm i -g vercel
 vercel
 ```
 
-Follow the prompts. Vercel auto-detects Next.js.
+Follow the prompts. Production deployment runs on `vercel --prod`.
 
-### Option B — GitHub integration
+### Custom Domain
 
-1. Push this repo to GitHub.
-2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
-3. Accept all defaults — no environment variables required.
-4. Click **Deploy**.
+1. In the Vercel dashboard → Settings → Domains → add `chinookwebco.com`.
+2. Point your DNS `A` record to Vercel's IP (`76.76.21.21`) and `CNAME www` → `cname.vercel-dns.com`.
 
-The site will be live at your `.vercel.app` URL within ~60 seconds.
+## Contact Form
 
-### Custom domain
+Uses [Formspree](https://formspree.io/) form ID `xnjoleaz`.  
+Action URL: `https://formspree.io/f/xnjoleaz`
 
-In the Vercel dashboard → **Settings → Domains**, add `chinookwebco.com` and follow the DNS instructions.
-
----
-
-## Formspree
-
-The contact form posts to `https://formspree.io/f/xnjoleaz`.
-
-- No environment variables needed — the form ID is public.
-- Submissions are delivered to the email linked to that Formspree account.
-- To change the recipient, update the Formspree dashboard at [formspree.io](https://formspree.io).
-
----
+No server-side code required — form data is POSTed directly from the browser.
 
 ## Project Structure
 
 ```
 app/
-  globals.css        — Tailwind v4 theme + base styles
-  layout.tsx         — Root layout, font loading, metadata
-  page.tsx           — Page assembly (imports all sections)
+  globals.css        Design tokens, keyframes, base resets
+  layout.tsx         Font loading, metadata, root HTML
+  page.tsx           Split-viewport page shell
 
 components/
-  Navigation.tsx     — Sticky nav with mobile hamburger
-  Hero.tsx           — Two-column hero + browser mockup
-  StatsBar.tsx       — Dark stats band with animated counters
-  Pricing.tsx        — Three-tier pricing cards
-  HowItWorks.tsx     — 3-step process section
-  WhyWebsite.tsx     — ROI two-column stat section
-  Portfolio.tsx      — Placeholder portfolio cards
-  Testimonials.tsx   — Client quote cards
-  Contact.tsx        — Formspree contact form
-  Footer.tsx         — Dark footer
+  Navigation.tsx     Fixed left panel (desktop) + sticky top bar (mobile)
+  Hero.tsx           Full-viewport hero with text generate effect
+  StatsBar.tsx       4-stat animated counter band
+  Services.tsx       Service cards + philosophy quote
+  HowItWorks.tsx     3-step process with animated step nodes
+  WhyWebsite.tsx     2-column stat proof section
+  Portfolio.tsx      Placeholder project cards
+  Testimonials.tsx   Dual-row auto-scrolling marquee
+  Pricing.tsx        2 pricing tiers + FAQ accordion
+  Contact.tsx        Formspree contact form
+  Footer.tsx         Footer with ghost wordmark
 
   ui/
-    ScrollReveal.tsx    — Scroll-triggered fade-up animations
-    AnimatedCounter.tsx — Count-up number animation
+    TextGenerateEffect.tsx   Word-by-word blur reveal
+    NumberTicker.tsx         Spring-physics animated counter
+    Marquee.tsx              Infinite horizontal scroll
+    ScrollReveal.tsx         Viewport-triggered fade-up
 
 lib/
-  utils.ts           — cn() helper
-
-public/
-  wordmark.svg       — Brand logo
-  brand-guidelines.md
+  utils.ts           cn() helper
 ```
-
----
-
-## Design System
-
-| Token | Value |
-|-------|-------|
-| Dark background | `#1A1F2E` |
-| Light background | `#F5F1EC` |
-| Chinook Amber (accent) | `#E07B2A` |
-| Secondary blue | `#2E6EA6` |
-| Muted text | `#6B7A8D` |
-| Headlines | Barlow Condensed 700 |
-| Body | Inter 400 |

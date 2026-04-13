@@ -16,10 +16,11 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Chinook Web Co. | Calgary Web Design',
+  title: 'Chinook Web Co. | Calgary Web Design & Development',
   description:
-    'Professional websites for Calgary small businesses and trades. We build fast, no-nonsense sites that get customers through the door — starting at $750.',
-  keywords: 'Calgary web design, Calgary website, small business website Calgary, trades website Calgary',
+    'Calgary websites that get customers through the door. We build fast, custom sites for local trades and businesses — mockup first, no obligation. Starting at $2,500.',
+  keywords:
+    'Calgary web design, Calgary website, small business website Calgary, trades website Calgary, web design agency Calgary',
   openGraph: {
     title: 'Chinook Web Co. | Calgary Web Design',
     description: 'Calgary websites that get customers through the door.',
@@ -40,7 +41,7 @@ export default function RootLayout({
       lang="en"
       className={`${barlowCondensed.variable} ${inter.variable}`}
     >
-      <body>{children}</body>
+      <body className="noise-overlay">{children}</body>
     </html>
   )
 }

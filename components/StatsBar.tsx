@@ -1,9 +1,9 @@
 'use client'
 
-import AnimatedCounter from './ui/AnimatedCounter'
-import { StaggerContainer, StaggerItem } from './ui/ScrollReveal'
+import { NumberTicker } from '@/components/ui/NumberTicker'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
-const stats = [
+const STATS = [
   {
     value: 81,
     suffix: '%',
@@ -13,59 +13,56 @@ const stats = [
   {
     value: 2,
     suffix: '×',
-    label: 'faster growth for businesses with a website',
+    label: 'faster growth for businesses with a website vs. those without',
     source: 'Marketing LTB, 2025',
   },
   {
     value: 76,
     suffix: '%',
-    label: 'of people check your site before deciding to visit',
+    label: 'of people check a local business website before visiting',
     source: 'BrightLocal',
   },
   {
     value: 50,
     suffix: '%',
-    label: 'avg. revenue increase after launching a modern site',
+    label: 'avg. revenue increase for SMBs with a modern website',
     source: 'Network Solutions, 2025',
+    prefix: 'up to ',
   },
-]
+] as const
 
-export default function StatsBar() {
+export function StatsBar() {
   return (
-    /* Full-width dark band */
-    <section className="bg-[#1A1F2E] py-16 md:py-20" aria-label="Industry statistics">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 lg:gap-x-0">
-          {stats.map((stat, i) => (
-            <StaggerItem key={stat.label}>
-              {/* Divider rule between items (desktop) */}
-              <div className={`flex flex-col ${i > 0 ? 'lg:border-l lg:border-white/10 lg:pl-10' : ''}`}>
-                {/* Big number */}
-                <p
-                  className="text-5xl md:text-6xl font-bold text-[#E07B2A] tabular-nums"
-                  style={{ fontFamily: 'var(--font-barlow)', fontWeight: 700 }}
-                  aria-label={`${stat.value}${stat.suffix}`}
-                >
-                  <AnimatedCounter
-                    end={stat.value}
-                    suffix={stat.suffix}
-                    duration={2.2}
-                  />
-                </p>
+    <section
+      id="stats"
+      className="bg-charcoal border-y border-white/[0.07] py-14 px-8 md:px-14 lg:px-20"
+    >
+      <ScrollReveal>
+        <p className="text-[10px] uppercase tracking-[0.2em] font-semibold text-amber mb-10">
+          The reality for local businesses in 2025
+        </p>
+      </ScrollReveal>
 
-                {/* Label */}
-                <p className="mt-3 text-sm text-[#F5F1EC]/70 leading-snug max-w-[160px]">
-                  {stat.label}
-                </p>
-
-                {/* Source attribution */}
-                <p className="mt-2 text-[10px] text-[#6B7A8D] uppercase tracking-wider">
-                  {stat.source}
-                </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {STATS.map(({ value, suffix, prefix, label, source }) => (
+          <ScrollReveal key={label}>
+            <div className="flex flex-col gap-2 pr-6 border-r border-white/[0.06] last:border-none">
+              <div
+                className="text-[clamp(2.5rem,5vw,3.5rem)] font-black text-amber leading-none tracking-tight"
+                style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+              >
+                {prefix && <span className="text-xl font-semibold text-amber/70 mr-1">{prefix}</span>}
+                <NumberTicker value={value} suffix={suffix} />
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+              <p className="text-sm leading-relaxed text-text-dark max-w-[220px]">
+                {label}
+              </p>
+              <span className="text-[10px] uppercase tracking-widest text-text-muted-dark font-medium">
+                {source}
+              </span>
+            </div>
+          </ScrollReveal>
+        ))}
       </div>
     </section>
   )

@@ -1,21 +1,29 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Brand Colors */
-  --color-chinook-dark: #1A1F2E;
-  --color-chinook-light: #F5F1EC;
-  --color-chinook-amber: #E07B2A;
-  --color-chinook-blue: #2E6EA6;
-  --color-chinook-muted: #6B7A8D;
-  --color-chinook-border: #D8E0E8;
-  --color-chinook-steel: #1C3A5E;
+  /* ── Core Palette ── */
+  --color-charcoal:      #1A1F2E;
+  --color-steel:         #1C3A5E;
+  --color-amber:         #E07B2A;
+  --color-sky:           #2E6EA6;
+  --color-offwhite:      #F5F1EC;
 
-  /* Font Families — next/font injects these CSS variables on <html> */
-  --font-barlow: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  --font-inter: var(--font-inter-var), 'Inter', sans-serif;
+  /* ── Text tokens ── */
+  --color-text-dark:         #C8D4DE;
+  --color-text-muted-dark:   #6B7A8D;
+  --color-text-light:        #2A2520;
+  --color-text-muted-light:  #6B6058;
+
+  /* ── Border tokens ── */
+  --color-border-dark:   rgba(255,255,255,0.08);
+  --color-border-light:  rgba(0,0,0,0.10);
+
+  /* ── Font families (next/font injects the CSS var on <html>) ── */
+  --font-headline: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  --font-body:     var(--font-inter-var), 'Inter', sans-serif;
 }
 
-/* Base resets */
+/* ── Base resets ── */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -25,32 +33,54 @@ html {
 }
 
 body {
-  font-family: var(--font-inter);
-  background-color: #F5F1EC;
-  color: #1A1F2E;
+  font-family: var(--font-body);
+  background-color: #1A1F2E;
+  color: #C8D4DE;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Eyebrow label utility */
-.eyebrow {
-  font-family: var(--font-inter);
-  font-weight: 600;
-  font-size: 0.6875rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #6B7A8D;
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #1A1F2E;
+}
+::-webkit-scrollbar-thumb {
+  background: #E07B2A;
+  border-radius: 2px;
 }
 
-/* Barlow Condensed headline utility */
-.headline {
-  font-family: var(--font-barlow);
-  font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -0.01em;
+/* ── Marquee keyframes ── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
-/* Reduced motion */
+.animate-marquee-left {
+  animation: marquee-left linear infinite;
+}
+.animate-marquee-right {
+  animation: marquee-right linear infinite;
+}
+
+/* ── Noise texture overlay (fixed, pointer-events-none) ── */
+.noise-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.025;
+}
+
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

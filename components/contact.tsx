@@ -1,298 +1,336 @@
 'use client'
 
-import { useState } from 'react'
-import ScrollReveal from './ui/ScrollReveal'
+import { useState, useRef, FormEvent } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { Mail, Phone, ArrowRight, Check } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-type FormState = 'idle' | 'submitting' | 'success' | 'error'
-
-const FORMSPREE_URL = 'https://formspree.io/f/xnjoleaz'
-
-const businessTypes = [
-  'Plumbing',
+const BUSINESS_TYPES = [
+  'Plumbing / HVAC',
   'Electrical',
-  'HVAC / Heating & Cooling',
-  'Roofing',
-  'General Contractor',
-  'Landscaping / Lawn Care',
-  'Cleaning Services',
-  'Auto / Mechanic',
-  'Retail / Food & Beverage',
+  'Landscaping / Snow Removal',
+  'Roofing / Contracting',
+  'Auto Services',
+  'Dental / Medical',
+  'Restaurant / Food Service',
+  'Real Estate',
+  'Fitness / Wellness',
+  'Financial Services',
+  'Retail / E-commerce',
   'Other',
 ]
 
-export default function Contact() {
-  const [formState, setFormState] = useState<FormState>('idle')
-  const [errors, setErrors] = useState<Record<string, string>>({})
+interface FormData {
+  businessName: string
+  name: string
+  email: string
+  phone: string
+  businessType: string
+  message: string
+}
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+const initialForm: FormData = {
+  businessName: '',
+  name: '',
+  email: '',
+  phone: '',
+  businessType: '',
+  message: '',
+}
+
+// Shared input class
+const inputClass =
+  'w-full bg-transparent border-0 border-b border-white/20 py-4 text-xl font-light text-white ' +
+  'placeholder:text-white/20 focus:outline-none focus:border-amber transition-colors duration-200'
+
+const labelClass =
+  'block text-[10px] font-semibold uppercase tracking-[0.2em] text-text-muted-dark mb-2'
+
+export function Contact() {
+  const [form, setForm] = useState<FormData>(initialForm)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+
+  const headerRef = useRef<HTMLDivElement>(null)
+  const isHeaderInView = useInView(headerRef, { once: true })
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const form = e.currentTarget
-    const data = new FormData(form)
-
-    // Basic client-side validation
-    const newErrors: Record<string, string> = {}
-    if (!data.get('businessName')) newErrors.businessName = 'Required'
-    if (!data.get('yourName')) newErrors.yourName = 'Required'
-    if (!data.get('email')) newErrors.email = 'Required'
-    if (!data.get('businessType')) newErrors.businessType = 'Please select a type'
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      // Focus first invalid field
-      const firstKey = Object.keys(newErrors)[0]
-      const el = form.elements.namedItem(firstKey) as HTMLElement | null
-      el?.focus()
-      return
-    }
-
-    setErrors({})
-    setFormState('submitting')
-
+    setStatus('sending')
     try {
-      const response = await fetch(FORMSPREE_URL, {
+      const res = await fetch('https://formspree.io/f/xnjoleaz', {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          businessName: form.businessName,
+          contactName: form.name,
+          email: form.email,
+          phone: form.phone || 'Not provided',
+          businessType: form.businessType,
+          message: form.message,
+        }),
       })
-
-      if (response.ok) {
-        setFormState('success')
-        form.reset()
+      if (res.ok) {
+        setStatus('sent')
+        setForm(initialForm)
       } else {
-        setFormState('error')
+        setStatus('error')
       }
     } catch {
-      setFormState('error')
+      setStatus('error')
     }
   }
 
   return (
-    <section id="contact" className="bg-[#F5F1EC] py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section
+      id="contact"
+      className="bg-charcoal py-24 md:py-32 px-8 md:px-14 lg:px-20"
+    >
+      <div className="max-w-5xl">
+        {/* Header */}
+        <motion.div
+          ref={headerRef}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="mb-14"
+        >
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber mb-4">
+            07 / Get started
+          </p>
+          <h2
+            className="text-[clamp(2.8rem,7vw,6rem)] font-black uppercase leading-[0.9] tracking-[-0.02em] text-white mb-5"
+            style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+          >
+            Get a free
+            <br />
+            website preview —
+            <br />
+            <span className="text-text-muted-dark">no commitment.</span>
+          </h2>
+          <p className="max-w-lg text-base leading-relaxed text-text-dark">
+            Tell us about your business and we&apos;ll build a full homepage mockup — free, no strings attached. If you love it, we build the real thing. If not, you walk away.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-
-          {/* LEFT — intro copy */}
-          <div className="flex flex-col justify-start lg:sticky lg:top-24 lg:self-start">
-            <ScrollReveal>
-              <p className="eyebrow mb-4">Free Preview</p>
-              <h2
-                className="text-4xl md:text-5xl font-bold text-[#1A1F2E] leading-[1.0] mb-6"
-                style={{ fontFamily: 'var(--font-barlow)', fontWeight: 700 }}
+        {/* Success state */}
+        {status === 'sent' ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col gap-5 p-10 border border-amber/30 bg-amber/5 max-w-xl"
+          >
+            <div className="w-12 h-12 rounded-full bg-amber flex items-center justify-center">
+              <Check size={22} strokeWidth={2.5} className="text-white" />
+            </div>
+            <div>
+              <h3
+                className="text-3xl font-bold uppercase text-white mb-2"
+                style={{ fontFamily: 'var(--font-barlow-condensed)' }}
               >
-                Get a free website preview —{' '}
-                <span className="text-[#E07B2A]">no commitment.</span>
-              </h2>
-              <p className="text-[#6B7A8D] text-sm leading-relaxed mb-8 max-w-sm">
-                Before you spend a dollar, I'll build you a working hero section — the first
-                thing visitors see when they land on your site. You'll see exactly what a
-                Chinook Web Co. build looks and feels like, for free.
+                Request received!
+              </h3>
+              <p className="text-base text-text-dark leading-relaxed">
+                We&apos;ll review your info and get back to you within 4 business hours. Check your inbox — your free mockup is on the way.
               </p>
-
-              <div className="flex flex-col gap-4">
-                {/* Trust signals */}
-                {[
-                  'Free preview — designed for your business',
-                  'No credit card, no contracts',
-                  'Usually responds within 24 hours',
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 text-sm text-[#1A1F2E]">
-                    <span className="w-4 h-4 rounded-full bg-[#E07B2A]/15 flex items-center justify-center shrink-0">
-                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-                        <path d="M1.5 4L3 5.5L6.5 2" stroke="#E07B2A" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-                    {item}
-                  </div>
-                ))}
+            </div>
+          </motion.div>
+        ) : (
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+            onSubmit={handleSubmit}
+            className="space-y-10 max-w-2xl"
+          >
+            {/* Row 1: Business Name + Your Name */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div>
+                <label htmlFor="businessName" className={labelClass}>
+                  Business Name <span className="text-amber">*</span>
+                </label>
+                <input
+                  id="businessName"
+                  name="businessName"
+                  type="text"
+                  required
+                  placeholder="Sullivan Plumbing Ltd."
+                  value={form.businessName}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
               </div>
+              <div>
+                <label htmlFor="name" className={labelClass}>
+                  Your Name <span className="text-amber">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Mike Sullivan"
+                  value={form.name}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+              </div>
+            </div>
 
-              {/* Email contact */}
-              <div className="mt-8 pt-8 border-t border-[#D8E0E8]">
-                <p className="text-xs text-[#6B7A8D] uppercase tracking-wider mb-1">Email us directly</p>
-                <a
-                  href="mailto:hello@chinookwebco.com"
-                  className="text-sm font-medium text-[#1C3A5E] hover:text-[#E07B2A] transition-colors duration-150"
-                >
+            {/* Row 2: Email + Phone */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div>
+                <label htmlFor="email" className={labelClass}>
+                  Email <span className="text-amber">*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="mike@sullivan-plumbing.ca"
+                  value={form.email}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className={labelClass}>
+                  Phone <span className="text-text-muted-dark">(optional)</span>
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+1 (403) 555-0182"
+                  value={form.phone}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+              </div>
+            </div>
+
+            {/* Business type */}
+            <div>
+              <label htmlFor="businessType" className={labelClass}>
+                Business Type <span className="text-amber">*</span>
+              </label>
+              <select
+                id="businessType"
+                name="businessType"
+                required
+                value={form.businessType}
+                onChange={handleChange}
+                className={cn(
+                  inputClass,
+                  'appearance-none cursor-pointer',
+                  !form.businessType && 'text-white/20'
+                )}
+              >
+                <option value="" disabled>Select your industry...</option>
+                {BUSINESS_TYPES.map((t) => (
+                  <option key={t} value={t} className="bg-charcoal text-white">
+                    {t}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Message */}
+            <div>
+              <label htmlFor="message" className={labelClass}>
+                Biggest Business Goal <span className="text-amber">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={3}
+                placeholder="Double our organic lead volume over the next 6 months..."
+                value={form.message}
+                onChange={handleChange}
+                className={cn(inputClass, 'resize-none')}
+              />
+            </div>
+
+            {/* Error state */}
+            {status === 'error' && (
+              <p className="text-sm text-red-400">
+                Something went wrong. Please email us directly at{' '}
+                <a href="mailto:hello@chinookwebco.com" className="underline">
                   hello@chinookwebco.com
                 </a>
-                <p className="mt-1 text-xs text-[#6B7A8D]">Usually responds within 24 hours.</p>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          {/* RIGHT — Formspree form */}
-          <ScrollReveal delay={0.1}>
-            {formState === 'success' ? (
-              <div className="bg-white rounded-[10px] border border-[#D8E0E8] p-10 text-center">
-                <div className="w-12 h-12 rounded-full bg-[#E07B2A]/10 flex items-center justify-center mx-auto mb-5">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                    <path d="M4 11L9 16L18 6" stroke="#E07B2A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <h3
-                  className="text-2xl font-bold text-[#1A1F2E] mb-2"
-                  style={{ fontFamily: 'var(--font-barlow)', fontWeight: 700 }}
-                >
-                  Got it — thanks!
-                </h3>
-                <p className="text-sm text-[#6B7A8D] max-w-xs mx-auto">
-                  I'll review your details and have your free preview ready within 1–2 business days.
-                </p>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                noValidate
-                className="bg-white rounded-[10px] border border-[#D8E0E8] p-7 md:p-9"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-                  {/* Business Name */}
-                  <div className="flex flex-col gap-1.5 sm:col-span-2">
-                    <label htmlFor="businessName" className="text-xs font-semibold text-[#1A1F2E]">
-                      Business Name <span aria-hidden="true" className="text-[#E07B2A]">*</span>
-                    </label>
-                    <input
-                      id="businessName"
-                      name="businessName"
-                      type="text"
-                      autoComplete="organization"
-                      placeholder="e.g. Kowalski Plumbing"
-                      className={`rounded-[6px] border px-4 py-3 text-sm text-[#1A1F2E] bg-[#F5F1EC] placeholder-[#6B7A8D]/60 focus:outline-none focus:ring-2 focus:ring-[#E07B2A]/40 focus:border-[#E07B2A] transition-colors ${errors.businessName ? 'border-red-400' : 'border-[#D8E0E8]'}`}
-                    />
-                    {errors.businessName && (
-                      <p className="text-xs text-red-500" role="alert">{errors.businessName}</p>
-                    )}
-                  </div>
-
-                  {/* Your Name */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="yourName" className="text-xs font-semibold text-[#1A1F2E]">
-                      Your Name <span aria-hidden="true" className="text-[#E07B2A]">*</span>
-                    </label>
-                    <input
-                      id="yourName"
-                      name="yourName"
-                      type="text"
-                      autoComplete="name"
-                      placeholder="First & last"
-                      className={`rounded-[6px] border px-4 py-3 text-sm text-[#1A1F2E] bg-[#F5F1EC] placeholder-[#6B7A8D]/60 focus:outline-none focus:ring-2 focus:ring-[#E07B2A]/40 focus:border-[#E07B2A] transition-colors ${errors.yourName ? 'border-red-400' : 'border-[#D8E0E8]'}`}
-                    />
-                    {errors.yourName && (
-                      <p className="text-xs text-red-500" role="alert">{errors.yourName}</p>
-                    )}
-                  </div>
-
-                  {/* Email */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-xs font-semibold text-[#1A1F2E]">
-                      Email <span aria-hidden="true" className="text-[#E07B2A]">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      placeholder="you@yourcompany.com"
-                      className={`rounded-[6px] border px-4 py-3 text-sm text-[#1A1F2E] bg-[#F5F1EC] placeholder-[#6B7A8D]/60 focus:outline-none focus:ring-2 focus:ring-[#E07B2A]/40 focus:border-[#E07B2A] transition-colors ${errors.email ? 'border-red-400' : 'border-[#D8E0E8]'}`}
-                    />
-                    {errors.email && (
-                      <p className="text-xs text-red-500" role="alert">{errors.email}</p>
-                    )}
-                  </div>
-
-                  {/* Phone — optional */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="phone" className="text-xs font-semibold text-[#1A1F2E]">
-                      Phone{' '}
-                      <span className="font-normal text-[#6B7A8D]">(optional)</span>
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      placeholder="+1 (403) 555-1234"
-                      className="rounded-[6px] border border-[#D8E0E8] px-4 py-3 text-sm text-[#1A1F2E] bg-[#F5F1EC] placeholder-[#6B7A8D]/60 focus:outline-none focus:ring-2 focus:ring-[#E07B2A]/40 focus:border-[#E07B2A] transition-colors"
-                    />
-                  </div>
-
-                  {/* Business Type */}
-                  <div className="flex flex-col gap-1.5 sm:col-span-2">
-                    <label htmlFor="businessType" className="text-xs font-semibold text-[#1A1F2E]">
-                      Business Type / Niche <span aria-hidden="true" className="text-[#E07B2A]">*</span>
-                    </label>
-                    <select
-                      id="businessType"
-                      name="businessType"
-                      className={`rounded-[6px] border px-4 py-3 text-sm text-[#1A1F2E] bg-[#F5F1EC] focus:outline-none focus:ring-2 focus:ring-[#E07B2A]/40 focus:border-[#E07B2A] transition-colors cursor-pointer ${errors.businessType ? 'border-red-400' : 'border-[#D8E0E8]'}`}
-                    >
-                      <option value="">Select your industry...</option>
-                      {businessTypes.map((t) => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                    {errors.businessType && (
-                      <p className="text-xs text-red-500" role="alert">{errors.businessType}</p>
-                    )}
-                  </div>
-
-                  {/* Message */}
-                  <div className="flex flex-col gap-1.5 sm:col-span-2">
-                    <label htmlFor="message" className="text-xs font-semibold text-[#1A1F2E]">
-                      Anything else we should know{' '}
-                      <span className="font-normal text-[#6B7A8D]">(optional)</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={3}
-                      placeholder="What's your biggest challenge with getting customers online?"
-                      className="rounded-[6px] border border-[#D8E0E8] px-4 py-3 text-sm text-[#1A1F2E] bg-[#F5F1EC] placeholder-[#6B7A8D]/60 focus:outline-none focus:ring-2 focus:ring-[#E07B2A]/40 focus:border-[#E07B2A] transition-colors resize-none"
-                    />
-                  </div>
-                </div>
-
-                {/* Submit */}
-                <div className="mt-6">
-                  <button
-                    type="submit"
-                    disabled={formState === 'submitting'}
-                    className="w-full flex items-center justify-center gap-2 bg-[#1C3A5E] text-[#F5F1EC] font-semibold text-sm py-3.5 rounded-[6px] hover:bg-[#162f50] active:scale-[0.98] transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
-                  >
-                    {formState === 'submitting' ? (
-                      <>
-                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Sending…
-                      </>
-                    ) : (
-                      <>
-                        Request My Free Preview
-                        <span className="w-5 h-5 rounded-full bg-[#E07B2A] flex items-center justify-center">
-                          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                            <path d="M2 8L8 2M8 2H4M8 2V6" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </span>
-                      </>
-                    )}
-                  </button>
-
-                  {formState === 'error' && (
-                    <p className="mt-3 text-xs text-red-500 text-center" role="alert">
-                      Something went wrong. Please try again or email us directly.
-                    </p>
-                  )}
-
-                  <p className="mt-3 text-center text-[10px] text-[#6B7A8D]">
-                    No spam. No obligation. Usually responds within 24 hours.
-                  </p>
-                </div>
-              </form>
+              </p>
             )}
-          </ScrollReveal>
 
-        </div>
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={status === 'sending'}
+              className={cn(
+                'group inline-flex items-center gap-4 bg-amber text-white',
+                'px-10 py-5 text-base font-bold uppercase tracking-[0.12em]',
+                'transition-all duration-200 hover:brightness-110 active:scale-[0.98]',
+                status === 'sending' && 'opacity-70 cursor-not-allowed'
+              )}
+            >
+              <span
+                className="font-black text-xl uppercase"
+                style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+              >
+                {status === 'sending' ? 'Sending...' : 'Submit Request'}
+              </span>
+              <ArrowRight
+                size={18}
+                strokeWidth={2}
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </button>
+          </motion.form>
+        )}
+
+        {/* Below-form contact info */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+          className="mt-16 pt-10 border-t border-white/[0.07] flex flex-col sm:flex-row gap-8"
+        >
+          <a
+            href="mailto:hello@chinookwebco.com"
+            className="group flex items-center gap-3 text-text-dark hover:text-white transition-colors duration-150"
+          >
+            <Mail size={16} strokeWidth={1.5} className="text-amber shrink-0" />
+            <div>
+              <p className="text-[11px] uppercase tracking-widest font-semibold text-text-muted-dark mb-0.5">
+                Email
+              </p>
+              <span className="text-sm border-b border-white/20 group-hover:border-white pb-px transition-colors duration-150">
+                hello@chinookwebco.com
+              </span>
+            </div>
+          </a>
+          <div className="flex items-center gap-3">
+            <Phone size={16} strokeWidth={1.5} className="text-amber shrink-0" />
+            <div>
+              <p className="text-[11px] uppercase tracking-widest font-semibold text-text-muted-dark mb-0.5">
+                Response time
+              </p>
+              <span className="text-sm text-text-dark">
+                Usually within 4 business hours
+              </span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

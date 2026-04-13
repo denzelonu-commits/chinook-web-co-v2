@@ -45,21 +45,12 @@ export const metadata: Metadata = {
     siteName: 'Chinook Web Co.',
     locale: 'en_CA',
     type: 'website',
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Chinook Web Co. | Calgary Web Design',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Chinook Web Co. | Calgary Web Design & Development',
     description:
       'Calgary websites that get customers through the door. Fast, custom sites for local businesses — mockup first, no deposit, live in days.',
-    images: ['/opengraph-image.png'],
   },
 }
 

@@ -50,13 +50,13 @@ export function PageTransitionProvider({
       setVisible(true)
 
       // Push route just before the overlay fully lands (feels instant)
-      setTimeout(() => router.push(href), 280)
+      setTimeout(() => router.push(href), 450)
 
       // Start exit animation after a brief hold
       setTimeout(() => {
         setVisible(false)
         isAnimating.current = false
-      }, 520)
+      }, 820)
     },
     [router]
   )
@@ -73,11 +73,11 @@ export function PageTransitionProvider({
             initial={{ y: '100%' }}
             animate={{
               y: '0%',
-              transition: { duration: 0.32, ease: [0.76, 0, 0.24, 1] },
+              transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
             }}
             exit={{
               y: '-100%',
-              transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1], delay: 0.06 },
+              transition: { duration: 0.48, ease: [0.76, 0, 0.24, 1], delay: 0.1 },
             }}
           >
             <motion.div
@@ -85,7 +85,7 @@ export function PageTransitionProvider({
               animate={{
                 opacity: 1,
                 y: 0,
-                transition: { delay: 0.14, duration: 0.26, ease: 'easeOut' },
+                transition: { delay: 0.22, duration: 0.4, ease: 'easeOut' },
               }}
               className="flex flex-col items-center select-none"
             >

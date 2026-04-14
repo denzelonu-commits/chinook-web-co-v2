@@ -207,9 +207,65 @@ export default function TermsPage() {
               damages, including loss of revenue, loss of profits, or loss of data, even if we have
               been advised of the possibility of such damages.
             </p>
+            <h3>8.1 Third-Party Dependencies &amp; Service Interruptions</h3>
+            <p>
+              Chinook Web Co. utilizes third-party platforms to deliver our services, including but
+              not limited to AI tools, domain registrars, and cloud hosting providers. We do not own
+              or control these external services. Chinook Web Co. shall not be held liable for
+              service interruptions, data loss, or delays caused by the failure, maintenance, or
+              outage of any third-party platform. In the event of a significant outage, we will make
+              reasonable efforts to resume services once those platforms are operational.
+            </p>
           </Section>
 
-          <Section title="9. Warranties">
+          <Section title="9. Client Delays &amp; Project Hold">
+            <p>
+              If a client fails to provide required materials, assets, or feedback within{' '}
+              <strong>10 business days</strong> of a formal request, the project will be placed on
+              &ldquo;Hold.&rdquo; A <strong>Restart Fee of $150 CAD</strong> is required to
+              reactivate the project and re-prioritize it in our schedule.
+            </p>
+          </Section>
+
+          <Section title="10. Revision Limit">
+            <p>
+              Each project includes <strong>two (2) rounds of revisions</strong> within the agreed
+              scope. A &ldquo;round&rdquo; is defined as one consolidated set of feedback submitted
+              at one time. Additional revision rounds beyond the two included are billed at{' '}
+              <strong>$75 CAD per round</strong> or <strong>$50 CAD/hour</strong>, whichever applies.
+            </p>
+          </Section>
+
+          <Section title="11. Termination for Convenience">
+            <p>
+              Either party may terminate this agreement with <strong>30 days&rsquo; written
+              notice</strong> sent to the other party&rsquo;s designated email address. Upon
+              client-initiated termination, the client is responsible for payment of all work
+              completed to the date of termination. The initial <strong>50% deposit is
+              non-refundable</strong> under any circumstances.
+            </p>
+          </Section>
+
+          <Section title="12. Browser &amp; Device Support">
+            <p>
+              Chinook Web Co. builds and tests websites for the <strong>current and one previous
+              major version</strong> of Chrome, Safari, Edge, and Firefox. Compatibility with legacy
+              browsers (e.g., Internet Explorer) or unlisted browsers is not guaranteed and is not
+              included in the project scope unless explicitly agreed upon in writing.
+            </p>
+          </Section>
+
+          <Section title="13. Deemed Acceptance">
+            <p>
+              Upon delivery of the Final Review link, the client has <strong>10 business
+              days</strong> to submit feedback or written approval. If no response is received within
+              this period, the project will be considered &ldquo;deemed accepted,&rdquo; the site
+              will be marked as complete, and the <strong>remaining 50% balance becomes immediately
+              due</strong>.
+            </p>
+          </Section>
+
+          <Section title="14. Warranties">
             <p>
               We warrant that our services will be performed in a professional and workmanlike manner
               consistent with industry standards. We do not warrant that your website will achieve
@@ -223,7 +279,7 @@ export default function TermsPage() {
             </p>
           </Section>
 
-          <Section title="10. Governing Law">
+          <Section title="15. Governing Law">
             <p>
               These Terms are governed by and construed in accordance with the laws of the Province
               of Alberta and the federal laws of Canada applicable therein. Any dispute arising under
@@ -231,7 +287,7 @@ export default function TermsPage() {
             </p>
           </Section>
 
-          <Section title="11. Changes to These Terms">
+          <Section title="16. Changes to These Terms">
             <p>
               We reserve the right to update these Terms at any time. Changes take effect upon
               posting to our website. For active projects, material changes will be communicated
@@ -240,7 +296,7 @@ export default function TermsPage() {
             </p>
           </Section>
 
-          <Section title="12. Contact">
+          <Section title="17. Contact">
             <p>
               Questions about these Terms may be directed to:
             </p>

@@ -24,18 +24,8 @@ export const metadata: Metadata = {
     'Calgary web design, Calgary website, small business website Calgary, trades website Calgary, web design agency Calgary',
   metadataBase: new URL('https://chinookwebco.com'),
   icons: {
-    icon: [
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: [
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: '/favicon.png',
+    shortcut: '/favicon.ico',
   },
   openGraph: {
     title: 'Chinook Web Co. | Calgary Web Design & Development',

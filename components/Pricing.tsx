@@ -80,6 +80,7 @@ const TIERS = [
     badge: 'Essential',
     price: '$2,500',
     monthly: '$149/mo',
+    supportLine: 'Priority support, monthly health checks & updates',
     subtitle: 'Best for trades and service businesses getting started.',
     featured: false,
     features: [
@@ -96,6 +97,7 @@ const TIERS = [
     badge: 'Most Requested',
     price: '$4,800',
     monthly: '$299/mo',
+    supportLine: '2 hrs/mo support, monthly performance report & priority response',
     subtitle: 'For businesses serious about dominating local search.',
     featured: true,
     features: [
@@ -217,7 +219,7 @@ function PricingCard({
           </span>
         </div>
         <p className="text-[11px] text-[#6B6058] mt-1">
-          Hosting, SSL, updates & 1 hr/mo support included
+          {tier.supportLine}
         </p>
       </div>
 

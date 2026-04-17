@@ -6,6 +6,13 @@
       "runtimeExecutable": "/opt/homebrew/bin/node",
       "runtimeArgs": ["node_modules/.bin/next", "dev", "--webpack"],
       "port": 3000
+    },
+    {
+      "name": "demos-server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "/Users/denzelonuoha/chinook-demos"],
+      "port": 4322,
+      "autoPort": true
     }
   ]
 }

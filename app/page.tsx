@@ -42,9 +42,10 @@ export default function Home() {
         className="
           w-full
           md:ml-[340px] lg:ml-[380px]
-          md:h-screen md:overflow-y-auto
+          md:overflow-y-auto
           pt-14 md:pt-0
         "
+        style={{ minHeight: 'calc(100vh / 0.9)' }}
         id="scroll-container"
       >
         <Hero />

@@ -28,7 +28,7 @@ export default function Home() {
      * creates a horizontal scrollbar. The right `<main>` is the sole
      * scrollable surface on desktop.
      */
-    <div className="flex overflow-x-hidden">
+    <div className="flex overflow-x-hidden h-screen">
 
       {/* ── Left panel: Navigation ──────────────────────────────────────── */}
       {/*  On desktop: position:fixed, 340–380px wide, full-height         */}

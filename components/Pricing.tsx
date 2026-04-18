@@ -199,10 +199,10 @@ function PricingCard({
         'pt-5 border-t',
         tier.featured ? 'border-amber/20' : 'border-[#E0D8D0]'
       )}>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-0.5">
           <span
             className={cn(
-              'text-sm font-bold uppercase tracking-wider',
+              'text-[11px] font-bold uppercase tracking-wider',
               tier.featured ? 'text-amber' : 'text-[#6B6058]'
             )}
           >
@@ -210,7 +210,7 @@ function PricingCard({
           </span>
           <span
             className={cn(
-              'font-black text-xl tracking-tight',
+              'font-black text-2xl tracking-tight leading-none',
               tier.featured ? 'text-amber' : 'text-charcoal'
             )}
             style={{ fontFamily: 'var(--font-barlow-condensed)' }}

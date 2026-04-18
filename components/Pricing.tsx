@@ -161,7 +161,7 @@ function PricingCard({
 
       {/* Price */}
       <div className="mb-6">
-        <div className="flex items-baseline gap-2">
+        <div className="flex flex-col">
           <span
             className={cn(
               'font-black tracking-tight leading-none',
@@ -171,7 +171,7 @@ function PricingCard({
           >
             {tier.price}
           </span>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6058]">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6058] mt-1">
             build fee
           </span>
         </div>

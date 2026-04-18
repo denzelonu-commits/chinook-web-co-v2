@@ -28,7 +28,7 @@ export default function Home() {
      * creates a horizontal scrollbar. The right `<main>` is the sole
      * scrollable surface on desktop.
      */
-    <div className="flex overflow-x-hidden h-screen">
+    <div className="flex overflow-x-hidden" style={{ minHeight: 'calc(100vh / 0.9)' }}>
 
       {/* ── Left panel: Navigation ──────────────────────────────────────── */}
       {/*  On desktop: position:fixed, 340–380px wide, full-height         */}
@@ -40,12 +40,11 @@ export default function Home() {
       {/*  h-screen overflow-y-auto → only this column scrolls on desktop  */}
       <main
         className="
-          w-full
+          w-full h-full
           md:ml-[340px] lg:ml-[380px]
           md:overflow-y-auto
           pt-14 md:pt-0
         "
-        style={{ minHeight: 'calc(100vh / 0.9)' }}
         id="scroll-container"
       >
         <Hero />

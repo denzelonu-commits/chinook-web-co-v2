@@ -16,6 +16,7 @@ import { Services }     from '@/components/Services'
 import { HowItWorks }   from '@/components/HowItWorks'
 import { WhyWebsite }   from '@/components/WhyWebsite'
 import { Portfolio }    from '@/components/Portfolio'
+import { Testimonials } from '@/components/Testimonials'
 import { Pricing }      from '@/components/Pricing'
 import { Contact }      from '@/components/Contact'
 import { Footer }       from '@/components/Footer'
@@ -52,6 +53,7 @@ export default function Home() {
         <HowItWorks />
         <WhyWebsite />
         <Portfolio />
+        <Testimonials />
         <Pricing />
         <Contact />
         <Footer />

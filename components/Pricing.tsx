@@ -165,7 +165,7 @@ function PricingCard({
           <span
             className={cn(
               'font-black tracking-tight leading-none',
-              tier.featured ? 'text-amber text-6xl' : 'text-charcoal text-5xl'
+              tier.featured ? 'text-amber text-5xl' : 'text-charcoal text-5xl'
             )}
             style={{ fontFamily: 'var(--font-barlow-condensed)' }}
           >

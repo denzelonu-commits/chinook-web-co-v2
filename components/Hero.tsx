@@ -55,8 +55,8 @@ export function Hero() {
           style={{ fontFamily: 'var(--font-barlow-condensed)' }}
         >
           <TextGenerateEffect
-            words="Calgary Websites That Get CUSTOMERS Through the Door."
-            highlightWords={['CUSTOMERS']}
+            words="Web Design for Calgary TRADES Businesses"
+            highlightWords={['TRADES']}
             delay={0.4}
           />
         </h1>

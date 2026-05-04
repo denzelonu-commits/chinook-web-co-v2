@@ -74,6 +74,8 @@ export default function RootLayout({
       '@type': 'Person',
       name: 'Denzel',
     },
+    priceRange: '$$',
+    image: 'https://chinookwebco.com/wordmark.svg',
     sameAs: [],
   }
 

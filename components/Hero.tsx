@@ -45,7 +45,7 @@ export function Hero() {
           animate="visible"
           className="mb-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber"
         >
-          Calgary&apos;s Digital Engineering Studio
+          Calgary&apos;s Web Studio Built for Trades
         </motion.p>
 
         {/* ── Headline — TextGenerateEffect ── */}

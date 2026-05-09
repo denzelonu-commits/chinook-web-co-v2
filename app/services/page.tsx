@@ -12,7 +12,7 @@ import { usePageTransition } from '@/components/PageTransitionProvider'
 const SERVICES = [
   {
     number: '01',
-    title: 'Web Engineering',
+    title: 'Web Development',
     tagline: 'Code That Converts.',
     icon: Zap,
     description:
@@ -276,13 +276,13 @@ export default function ServicesPage() {
               <span className="text-amber">Architecture.</span>
             </h1>
             <p className="text-base leading-relaxed text-text-dark max-w-xl mb-10">
-              We engineer digital assets that perform with the precision of
+              We build digital assets that perform with the precision of
               industrial-grade machinery — optimized for the Calgary market and
               built to convert visitors into paying customers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => navigateTo('/')}
+              <a
+                href="/#contact"
                 className="group inline-flex items-center gap-3 bg-amber text-white
                            px-8 py-4 text-[11px] font-bold uppercase tracking-[0.15em]
                            transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
@@ -293,7 +293,7 @@ export default function ServicesPage() {
                   strokeWidth={2}
                   className="transition-transform duration-200 group-hover:translate-x-1"
                 />
-              </button>
+              </a>
               <button
                 onClick={() => navigateTo('/how-it-works')}
                 className="inline-flex items-center gap-3 border border-white/20 text-text-dark
@@ -350,7 +350,7 @@ export default function ServicesPage() {
                 Denzel O.
               </span>
               <span className="text-[10px] uppercase tracking-widest text-text-muted-dark font-medium">
-                Founder & Lead Engineer
+                Founder
               </span>
             </div>
           </motion.div>
@@ -380,8 +380,8 @@ export default function ServicesPage() {
               </h2>
             </div>
             <div className="flex flex-col gap-3 shrink-0">
-              <button
-                onClick={() => navigateTo('/')}
+              <a
+                href="/#contact"
                 className="group flex items-center justify-between gap-8 bg-amber text-white
                            px-8 py-5 text-[11px] font-bold uppercase tracking-[0.15em]
                            transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
@@ -392,7 +392,7 @@ export default function ServicesPage() {
                   strokeWidth={2}
                   className="transition-transform duration-200 group-hover:translate-x-1"
                 />
-              </button>
+              </a>
               <button
                 onClick={() => navigateTo('/how-it-works')}
                 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-text-muted-dark

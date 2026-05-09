@@ -17,7 +17,7 @@ const cardVariants: Variants = {
 const SERVICES = [
   {
     number: '01',
-    title: 'Web Engineering',
+    title: 'Web Development',
     description:
       'Hand-coded, bespoke interfaces built for speed and conversion. No drag-and-drop builders, no bloated themes — just clean, performant code that ranks and converts.',
     detail: 'Lighthouse 95+ guaranteed',
@@ -128,7 +128,7 @@ export function Services() {
           Digital Architecture
         </h2>
         <p className="mt-5 max-w-xl text-base leading-relaxed text-text-dark">
-          We engineer digital assets that perform with the precision of industrial-grade machinery — optimized for the Calgary market and built to convert visitors into paying customers.
+          We build digital assets that perform with the precision of industrial-grade machinery — optimized for the Calgary market and built to convert visitors into paying customers.
         </p>
       </motion.div>
 
@@ -153,7 +153,7 @@ export function Services() {
           Our philosophy
         </p>
         <blockquote className="text-lg font-medium text-white leading-relaxed max-w-2xl">
-          &ldquo;The mockup isn&apos;t just a design file — it&apos;s a commitment to quality. If we can&apos;t make it look exceptional on day one, we haven&apos;t earned the right to build it on day ten.&rdquo;
+          &ldquo;A great mockup is the same as a great quote: it tells you exactly what you&apos;re getting before any work starts. If we can&apos;t show you quality up front, we haven&apos;t earned the build.&rdquo;
         </blockquote>
         <div className="mt-4">
           <span
@@ -163,7 +163,7 @@ export function Services() {
             Denzel O.
           </span>
           <span className="text-[10px] uppercase tracking-widest text-text-muted-dark font-medium">
-            Founder & Lead Engineer
+            Founder
           </span>
         </div>
       </motion.div>

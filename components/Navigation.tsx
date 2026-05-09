@@ -160,7 +160,7 @@ export function Navigation() {
         {/* ── Bottom CTA block ── */}
         <div className="relative z-10 space-y-4">
           <p className="text-[11px] leading-relaxed text-text-muted-dark uppercase tracking-wide font-medium">
-            Independent digital engineering studio
+            Independent web studio for trades
             <br />
             based in Calgary, AB.
           </p>
@@ -175,8 +175,8 @@ export function Navigation() {
             </span>
           </a>
 
-          <button
-            onClick={() => handleNavClick('#contact', false)}
+          <a
+            href="/#contact"
             className="group flex items-center justify-between w-full bg-amber text-white
                        px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.15em]
                        transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
@@ -187,7 +187,7 @@ export function Navigation() {
               strokeWidth={2}
               className="transition-transform duration-200 group-hover:translate-x-1"
             />
-          </button>
+          </a>
         </div>
       </motion.aside>
 
@@ -212,12 +212,12 @@ export function Navigation() {
         </button>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => handleNavClick('#contact', false)}
+          <a
+            href="/#contact"
             className="bg-amber text-white text-[10px] font-bold uppercase tracking-[0.12em] px-4 py-2"
           >
             Free Preview
-          </button>
+          </a>
 
           {/* Hamburger */}
           <button
@@ -286,12 +286,12 @@ export function Navigation() {
         </nav>
 
         <div className="mt-10">
-          <button
-            onClick={() => handleNavClick('#contact', false)}
-            className="w-full bg-amber text-white py-4 text-sm font-bold uppercase tracking-[0.15em]"
+          <a
+            href="/#contact"
+            className="w-full bg-amber text-white py-4 text-sm font-bold uppercase tracking-[0.15em] block text-center"
           >
             Get a Free Preview
-          </button>
+          </a>
         </div>
       </motion.div>
     </>

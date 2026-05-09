@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { motion, Variants } from 'framer-motion'
 import { Home, Layers, Workflow, Tag, Mail, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -175,7 +176,7 @@ export function Navigation() {
             </span>
           </a>
 
-          <a
+          <Link
             href="/#contact"
             className="group flex items-center justify-between w-full bg-amber text-white
                        px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.15em]
@@ -187,7 +188,7 @@ export function Navigation() {
               strokeWidth={2}
               className="transition-transform duration-200 group-hover:translate-x-1"
             />
-          </a>
+          </Link>
         </div>
       </motion.aside>
 
@@ -212,12 +213,12 @@ export function Navigation() {
         </button>
 
         <div className="flex items-center gap-3">
-          <a
+          <Link
             href="/#contact"
             className="bg-amber text-white text-[10px] font-bold uppercase tracking-[0.12em] px-4 py-2"
           >
             Free Preview
-          </a>
+          </Link>
 
           {/* Hamburger */}
           <button
@@ -286,12 +287,12 @@ export function Navigation() {
         </nav>
 
         <div className="mt-10">
-          <a
+          <Link
             href="/#contact"
             className="w-full bg-amber text-white py-4 text-sm font-bold uppercase tracking-[0.15em] block text-center"
           >
             Get a Free Preview
-          </a>
+          </Link>
         </div>
       </motion.div>
     </>

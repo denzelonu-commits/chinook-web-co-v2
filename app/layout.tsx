@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Barlow_Condensed, Inter } from 'next/font/google'
 import Script from 'next/script'
 import { PageTransitionProvider } from '@/components/PageTransitionProvider'
+import { ScrollToHash } from '@/components/ScrollToHash'
 import './globals.css'
 
 const barlowCondensed = Barlow_Condensed({
@@ -94,6 +95,7 @@ export default function RootLayout({
       </head>
       <body className="noise-overlay bg-[#0e1321] text-[#F5F1EC] antialiased">
         <PageTransitionProvider>
+          <ScrollToHash />
           {children}
         </PageTransitionProvider>
       </body>

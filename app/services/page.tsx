@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import Link from 'next/link'
 import { Check, ArrowRight, Zap, MapPin, Server } from 'lucide-react'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
@@ -281,7 +282,7 @@ export default function ServicesPage() {
               built to convert visitors into paying customers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
+              <Link
                 href="/#contact"
                 className="group inline-flex items-center gap-3 bg-amber text-white
                            px-8 py-4 text-[11px] font-bold uppercase tracking-[0.15em]
@@ -293,7 +294,7 @@ export default function ServicesPage() {
                   strokeWidth={2}
                   className="transition-transform duration-200 group-hover:translate-x-1"
                 />
-              </a>
+              </Link>
               <button
                 onClick={() => navigateTo('/how-it-works')}
                 className="inline-flex items-center gap-3 border border-white/20 text-text-dark
@@ -380,7 +381,7 @@ export default function ServicesPage() {
               </h2>
             </div>
             <div className="flex flex-col gap-3 shrink-0">
-              <a
+              <Link
                 href="/#contact"
                 className="group flex items-center justify-between gap-8 bg-amber text-white
                            px-8 py-5 text-[11px] font-bold uppercase tracking-[0.15em]
@@ -392,7 +393,7 @@ export default function ServicesPage() {
                   strokeWidth={2}
                   className="transition-transform duration-200 group-hover:translate-x-1"
                 />
-              </a>
+              </Link>
               <button
                 onClick={() => navigateTo('/how-it-works')}
                 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-text-muted-dark

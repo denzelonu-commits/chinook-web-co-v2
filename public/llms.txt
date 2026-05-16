@@ -1,0 +1,37 @@
+# Chinook Web Co.
+
+> Independent web studio based in Calgary, Alberta, building custom websites for local trades businesses — electricians, plumbers, HVAC companies, roofers, and other service-based businesses. We build fast, hand-coded sites that rank in local search and convert visitors into paying customers.
+
+Chinook Web Co. is owned and operated by Denzel Onuoha, founder and web designer. Every project starts with a free, no-obligation homepage mockup so clients see the finished vision before paying a deposit. Sites are hand-coded (no drag-and-drop builders, no bloated themes), launch in 3 to 14 days, and ship with Lighthouse scores of 95 or higher across performance, accessibility, and SEO. Clients own their code outright on completion.
+
+## Services
+
+- [Web Development](https://www.chinookwebco.com/services): Hand-coded, bespoke website builds for Calgary trades and service businesses. No templates, no page builders.
+- [Local SEO](https://www.chinookwebco.com/services): Calgary-specific keyword strategy, Google Business Profile optimization, and schema markup built in from day one.
+- [Hosting and Maintenance](https://www.chinookwebco.com/services): Premium managed hosting from $149/month, including SSL, CDN, uptime monitoring, software updates, and monthly support hours.
+
+## Pricing
+
+Two fixed-price tiers, no hidden fees.
+
+- The Foundation: $2,500 build fee. 5-page custom site, SEO foundation, Google Business integration, mobile-responsive, live in 3 to 5 days. Hosting and maintenance from $149/month.
+- The Growth Engine: $4,800 build fee. 10 pages, advanced local SEO, custom content strategy, conversion rate optimization, analytics setup, live in 7 to 10 days. Hosting and maintenance $299/month.
+- Custom projects (e-commerce, booking systems, web applications) are quoted separately.
+
+## Key Pages
+
+- [Home](https://www.chinookwebco.com/): Overview of what Chinook Web Co. does, who it serves, and how the free preview process works.
+- [Services](https://www.chinookwebco.com/services): Detailed breakdown of web development, local SEO, and hosting and maintenance offerings.
+- [How It Works](https://www.chinookwebco.com/how-it-works): The three-step process — free mockup, client approval, build and launch.
+- [Pricing](https://www.chinookwebco.com/#pricing): Foundation and Growth Engine tiers with full inclusions and FAQ.
+- [Contact](https://www.chinookwebco.com/#contact): Free preview request form and direct email.
+
+## Service Area
+
+Calgary, Alberta, Canada. Chinook Web Co. focuses on local trades and service businesses in the Calgary metro area.
+
+## Contact
+
+- Email: hello@chinookwebco.com
+- Typical response time: within 4 business hours
+- Location: Calgary, Alberta, Canada
